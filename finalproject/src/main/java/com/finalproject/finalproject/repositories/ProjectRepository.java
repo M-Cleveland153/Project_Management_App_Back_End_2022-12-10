@@ -1,5 +1,9 @@
 package com.finalproject.finalproject.repositories;
 
-public interface ProjectRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.finalproject.finalproject.entities.Project;
+
+public interface ProjectRepository extends JpaRepository<Project, Long> {
 
 }

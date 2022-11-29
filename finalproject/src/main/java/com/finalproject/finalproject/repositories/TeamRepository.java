@@ -1,5 +1,9 @@
 package com.finalproject.finalproject.repositories;
 
-public interface TeamRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.finalproject.finalproject.entities.Team;
+
+public interface TeamRepository extends JpaRepository<Team, Long> {
 
 }

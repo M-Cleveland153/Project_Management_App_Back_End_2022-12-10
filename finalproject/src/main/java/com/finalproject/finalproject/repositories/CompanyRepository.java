@@ -1,5 +1,9 @@
 package com.finalproject.finalproject.repositories;
 
-public interface CompanyRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.finalproject.finalproject.entities.Company;
+
+public interface CompanyRepository extends JpaRepository<Company, Long> {
 
 }
