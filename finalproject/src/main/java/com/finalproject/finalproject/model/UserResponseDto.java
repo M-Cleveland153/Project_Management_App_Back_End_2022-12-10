@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserResponseDto {
 
-	private Long id;
+	private Long userId;
 
 	private String first;
 

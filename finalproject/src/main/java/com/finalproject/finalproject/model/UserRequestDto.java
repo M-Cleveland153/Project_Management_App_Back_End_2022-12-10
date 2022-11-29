@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserRequestDto {
 
-	private Long id;
+	private Long userId;
 
 	private CredentialsDto credentials;
 

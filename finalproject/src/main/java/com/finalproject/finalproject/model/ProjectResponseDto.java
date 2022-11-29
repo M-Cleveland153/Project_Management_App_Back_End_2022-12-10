@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProjectResponseDto {
 
-	private Long id;
+	private Long projectId;
 
 	private String name;
 

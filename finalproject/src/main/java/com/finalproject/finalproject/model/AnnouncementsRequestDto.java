@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AnnouncementsRequestDto {
 	
-	private Long id;
+	private Long announcementId;
 
 	private Timestamp postedTime;
 
