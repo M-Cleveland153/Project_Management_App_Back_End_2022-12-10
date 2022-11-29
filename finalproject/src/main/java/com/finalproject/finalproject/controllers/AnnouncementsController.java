@@ -21,10 +21,10 @@ import lombok.AllArgsConstructor;
 @RequestMapping
 ("/announcements")
 public class AnnouncementsController {
+	
 	private final AnnouncementsService announcementsService;
 	
 	@PostMapping("/create")
-	
 	public AnnouncementsResponseDto createAnnouncement(@RequestBody AnnouncementsRequestDto announcementsRequestDto, CredentialsDto credentialsDto) {
 		return announcementsService.createAnnouncement(announcementsRequestDto, credentialsDto);
 	}
