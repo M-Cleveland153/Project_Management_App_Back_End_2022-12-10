@@ -14,7 +14,7 @@ public class TeamRequestDto {
 
 	private String name;
 
-	private String decription;
+	private String description;
 
 	private Company company;
 

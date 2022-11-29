@@ -1,10 +1,14 @@
 package com.finalproject.finalproject.entities;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +24,10 @@ public class Project {
 
 	@Column(nullable = false)
 	private String name;
+
+	@CreationTimestamp
+	@Column(nullable = false)
+	private Timestamp postedTime;
 
 	@Column(nullable = false)
 	private String description;

@@ -1,5 +1,7 @@
 package com.finalproject.finalproject.model;
 
+import java.sql.Timestamp;
+
 import com.finalproject.finalproject.entities.Team;
 
 import lombok.Data;
@@ -12,6 +14,8 @@ public class ProjectRequestDto {
 	private String name;
 
 	private String description;
+
+	private Timestamp editedTime;
 
 	private boolean active;
 

@@ -15,7 +15,7 @@ public class ProjectResponseDto {
 
 	private String description;
 
-	private Timestamp postedTime;
+	private Timestamp editedTime;
 
 	private boolean active;
 
