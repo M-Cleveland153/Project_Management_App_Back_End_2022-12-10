@@ -2,6 +2,8 @@ package com.finalproject.finalproject.model;
 
 import java.sql.Timestamp;
 
+import com.finalproject.finalproject.entities.Team;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,7 +17,7 @@ public class ProjectResponseDto {
 
 	private String description;
 
-	private Timestamp editedTime;
+	private Timestamp postedTime;
 
 	private boolean active;
 

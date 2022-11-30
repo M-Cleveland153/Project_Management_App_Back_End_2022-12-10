@@ -19,7 +19,7 @@ public class Team {
 
 	@Id
 	@GeneratedValue
-	private Long id;
+	private Long teamId;
 
 	@Column(nullable = false)
 	private String name;

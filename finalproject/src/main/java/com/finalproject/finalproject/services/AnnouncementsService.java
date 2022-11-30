@@ -8,7 +8,8 @@ import com.finalproject.finalproject.model.CredentialsDto;
 
 public interface AnnouncementsService {
 
-	AnnouncementsResponseDto createAnnouncement(AnnouncementsRequestDto announcementsRequestDto,CredentialsDto credentialsDto);
+	AnnouncementsResponseDto createAnnouncement(AnnouncementsRequestDto announcementsRequestDto,
+			CredentialsDto credentialsDto);
 
 	List<AnnouncementsResponseDto> getAllAnnouncementsByCompany(Long companyId);
 

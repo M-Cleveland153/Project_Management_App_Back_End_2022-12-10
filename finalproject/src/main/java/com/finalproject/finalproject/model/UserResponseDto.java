@@ -9,9 +9,9 @@ public class UserResponseDto {
 
 	private Long userId;
 
-	private String first;
-
-	private String last;
+	private String username;
+	
+	private ProfileDto profile;
 
 	private boolean active;
 

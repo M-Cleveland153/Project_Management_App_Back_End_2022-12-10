@@ -2,6 +2,9 @@ package com.finalproject.finalproject.model;
 
 import java.util.List;
 
+import com.finalproject.finalproject.entities.Company;
+import com.finalproject.finalproject.entities.User;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,11 +12,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TeamResponseDto {
 
-	private Long id;
+	private Long teamId;
 
 	private String name;
 
-	private String description;
+	private String decription;
 
 	private CompanyResponseDto company;
 

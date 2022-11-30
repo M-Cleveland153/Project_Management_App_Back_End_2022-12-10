@@ -27,17 +27,8 @@ public class User {
 	@Embedded
 	private Credentials credentials;
 
-	@Column(nullable = false)
-	private String first;
-
-	@Column(nullable = false)
-	private String last;
-
-	@Column(nullable = false)
-	private String email;
-
-	@Column(nullable = false)
-	private String phone;
+	@Embedded
+	private Profile profile;
 
 	private boolean active;
 

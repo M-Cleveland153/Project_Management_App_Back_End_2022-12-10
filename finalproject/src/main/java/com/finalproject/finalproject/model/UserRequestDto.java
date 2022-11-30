@@ -14,17 +14,17 @@ public class UserRequestDto {
 
 	private CredentialsDto credentials;
 
-	private String first;
+	private String firstName;
 
-	private String last;
+	private String lastName;
 
 	private String email;
 
 	private String phone;
 
-	private boolean active;
+	private Boolean active;
 
-	private boolean admin;
+	private Boolean admin;
 
 	private String status;
 

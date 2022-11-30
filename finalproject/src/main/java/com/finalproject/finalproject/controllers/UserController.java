@@ -22,6 +22,16 @@ import lombok.RequiredArgsConstructor;
 public class UserController {
 
 	private final UserService userService;
+	
+//	@GetMapping("/exists/{username}")
+//	public boolean existUsername(@PathVariable String username) {
+//		return validateService.existUsername(username);
+//	}
+//
+//	@GetMapping("/available/{username}")
+//	public boolean availableUsername(@PathVariable String username) {
+//		return !validateService.existUsername(username);
+//	}
 
 	@PostMapping("/create")
 	public UserResponseDto createUser(@RequestBody UserRequestDto userRequestDto) {
