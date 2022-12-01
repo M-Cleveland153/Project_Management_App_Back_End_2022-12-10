@@ -10,17 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserRequestDto {
 
-	private Long userId;
-
 	private CredentialsDto credentials;
 
-	private String firstName;
-
-	private String lastName;
-
-	private String email;
-
-	private String phone;
+	private ProfileDto profile;
 
 	private Boolean active;
 
