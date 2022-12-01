@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CompanyResponseDto {
 
-	private Long companyId;
+	private Long id;
 
 	private String name;
 

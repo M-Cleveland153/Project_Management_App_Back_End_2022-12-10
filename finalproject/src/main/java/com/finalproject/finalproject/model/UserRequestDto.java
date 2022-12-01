@@ -20,8 +20,6 @@ public class UserRequestDto {
 
 	private String status;
 
-	private Team team;
-
-	private Company company;
+	private TeamRequestDto team;
 
 }

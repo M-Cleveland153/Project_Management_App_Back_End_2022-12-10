@@ -8,6 +8,6 @@ import com.finalproject.finalproject.entities.Team;
 
 public interface TeamRepository extends JpaRepository<Team, Long> {
 
-	Optional<Team> findById(Long teamId);
+	Optional<Team> findById(Long id);
 
 }

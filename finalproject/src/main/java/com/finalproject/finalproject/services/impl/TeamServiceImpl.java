@@ -50,17 +50,12 @@ public class TeamServiceImpl implements TeamService {
 			}
 		}
 		
-
 		return teamMapper.entityToDto(teamRepository.saveAndFlush(newTeamToBeCreated));
-		
-
-
 	}
 
 	@Override
 	public List<TeamResponseDto> getAllTeams(Long Id) {
 		return teamMapper.entitiesToDtos(teamRepository.findAll().stream().collect(Collectors.toList()));
-
 	}
 
 }

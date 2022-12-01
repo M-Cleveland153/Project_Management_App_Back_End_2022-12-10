@@ -16,6 +16,7 @@ import com.finalproject.finalproject.exceptions.NotFoundException;
 import com.finalproject.finalproject.mappers.CredentialsMapper;
 import com.finalproject.finalproject.mappers.UserMapper;
 import com.finalproject.finalproject.model.CredentialsDto;
+import com.finalproject.finalproject.model.NewUserDto;
 import com.finalproject.finalproject.model.UserRequestDto;
 import com.finalproject.finalproject.model.UserResponseDto;
 import com.finalproject.finalproject.repositories.CompanyRepository;
@@ -35,12 +36,10 @@ public class UserServiceImpl implements UserService{
 	private final TeamRepository teamRepository;
 	
 	
-	
 	@Override
-    public UserResponseDto createUser(UserRequestDto userRequestDto, CredentialsDto credentialsDto) {
-	User newUserToBeCreated = userMapper.dtoToEntity(userRequestDto);
-	Optional<User> authorizingUser = userRepository.findByCredentials(credentialsMapper.dtoToEntity(credentialsDto));
-	newUserToBeCreated.setCredentials(credentialsMapper.dtoToEntity(userRequestDto.getCredentials()));
+    public UserResponseDto createUser(NewUserDto newUserDto, Long companyId) {
+	User newUserToBeCreated = userMapper.dtoToEntity(newUserDto.getUserRequestDto());
+	Optional<User> authorizingUser = userRepository.findByCredentials(credentialsMapper.dtoToEntity(newUserDto.getCredentialsDto()));
 	
 	//check if authorizingUser has admin access
 	if(!authorizingUser.get().isAdmin()) {
@@ -48,39 +47,52 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	//Checking if username is available
-	if (userRepository.findByCredentialsUsername(newUserToBeCreated.getCredentials().getUsername()) !=null){
+	if (!userRepository.findByCredentialsUsername(newUserToBeCreated.getCredentials().getUsername()).isEmpty()){
 		throw new BadRequestException("Username already exists");
 	}
-	Profile profile = new Profile();
-	profile.setFirstName(userRequestDto.getProfile().getFirstName());
-	profile.setLastName(userRequestDto.getProfile().getLastName());
-	profile.setPhone(userRequestDto.getProfile().getPhone());
-	profile.setEmail(userRequestDto.getProfile().getEmail());
+
+	// Profile profile = new Profile();
+	// profile.setFirstName(userRequestDto.getProfile().getFirstName());
+	// profile.setLastName(userRequestDto.getProfile().getLastName());
+	// profile.setPhone(userRequestDto.getProfile().getPhone());
+	// profile.setEmail(userRequestDto.getProfile().getEmail());
 
 	//Checking if company exists
-	if (userRequestDto.getCompany() != null) {
-		Optional<Company> optionalCompany = companyRepository.findById(userRequestDto.getCompany().getId());
-		if (optionalCompany.isPresent()) {
-			newUserToBeCreated.setCompany(optionalCompany.get());
-		} else {
-			throw new NotFoundException("Company does not exist");
-//			throw new BadRequestException("Company with id: " + userRequestDto.getCompany().getCompanyId() + " does not exist");
-		}
-	}
+// 	if (newUserToBeCreated.getCompany() != null) {
+// 		Optional<Company> optionalCompany = companyRepository.findById(newUserToBeCreated.getCompany().getId());
+// 		if (optionalCompany.isPresent()) {
+// 			newUserToBeCreated.setCompany(optionalCompany.get());
+// 		} else {
+// 			throw new NotFoundException("Company does not exist");
+// //			throw new BadRequestException("Company with id: " + userRequestDto.getCompany().getCompanyId() + " does not exist");
+// 		}
+// 	}
 	
 	//Check if team already exists
-	if (userRequestDto.getTeam() != null) {
-		Optional<Team> optionalTeam = teamRepository.findById(userRequestDto.getTeam().getId());
-		if (optionalTeam.isPresent()) {
-			newUserToBeCreated.setTeam(optionalTeam.get());
-		} else {
-			throw new NotFoundException("Team does not exist");
-		}
-	}
-	newUserToBeCreated.setProfile(profile);
+	// if (newUserToBeCreated.getTeam() != null) {
+	// 	Optional<Team> optionalTeam = teamRepository.findById(newUserToBeCreated.getTeam().getId());
+	// 	if (optionalTeam.isPresent()) {
+	// 		newUserToBeCreated.setTeam(optionalTeam.get());
+	// 	} else {
+	// 		throw new NotFoundException("Team does not exist");
+	// 	}
+	// }
+	// newUserToBeCreated.setProfile(newUserToBeCreated.getProfile());
+
+	Optional<Company> companyForNewUser = companyRepository.findById(companyId);
+
+	System.out.println(companyForNewUser.get().getId());
+
+	if (companyForNewUser.get().getUsers() == null) companyForNewUser.get().setUsers(new ArrayList<User>());
+
+	companyForNewUser.get().getUsers().add(newUserToBeCreated);
+	newUserToBeCreated.setCompany(companyForNewUser.get());
+
+	// companyRepository.saveAndFlush(companyForNewUser.get());
 	return userMapper.entityToDto(userRepository.saveAndFlush(newUserToBeCreated));
     }
 
+	/// START HERE
     @Override
     public List<UserResponseDto> getUsersByCompany(Long companyId) {
     	List<User> users = userRepository.findAll();
