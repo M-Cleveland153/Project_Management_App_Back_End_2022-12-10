@@ -1,6 +1,7 @@
 package com.finalproject.finalproject.mappers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -18,5 +19,7 @@ public interface UserMapper {
 	List<UserResponseDto> entitiesToDtos(List<User> users);
 	
 	User dtoToEntity(UserRequestDto userRequestDto);
+
+	UserResponseDto entityToDto(Optional<User> userToFind);
 	
 }
