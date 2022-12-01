@@ -11,7 +11,7 @@ public interface ProjectService {
 
 	ProjectResponseDto createProject(ProjectRequestDto projectRequestDto, CredentialsDto credentialsDto);
 
-	List<ProjectResponseDto> getProjectByTeam(Long teamId);
+//	List<ProjectResponseDto> getProjectByTeam(Long teamId);
 
 //	List<ProjectResponseDto> getProjectsByCompany(Long companyId);
 

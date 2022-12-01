@@ -22,7 +22,7 @@ public class User {
 
 	@Id
 	@GeneratedValue
-	private Long userId;
+	private Long Id;
 
 	@Embedded
 	private Credentials credentials;

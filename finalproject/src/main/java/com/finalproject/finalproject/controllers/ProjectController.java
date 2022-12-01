@@ -30,10 +30,10 @@ public ProjectResponseDto createProject(@RequestBody ProjectRequestDto projectRe
 	return projectService.createProject(projectRequestDto, credentialsDto);
 }
 
-@GetMapping( "/team/{teamId}")
-public List<ProjectResponseDto> getProjectsByTeam(@PathVariable Long teamId){
-	return projectService.getProjectByTeam(teamId);
-}
+//@GetMapping( "/team/{teamId}")
+//public List<ProjectResponseDto> getProjectsByTeam(@PathVariable Long teamId){
+//	return projectService.getProjectByTeam(teamId);
+//}
 
 
 //@GetMapping( "/company/{companyId}")

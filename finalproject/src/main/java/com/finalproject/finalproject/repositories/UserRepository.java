@@ -8,5 +8,5 @@ import com.finalproject.finalproject.entities.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 	Optional<User> findByCredentialsUsername(String username);
-	 Optional<User> findById(Long id);
+	Optional<User> findById(Long id);
 }

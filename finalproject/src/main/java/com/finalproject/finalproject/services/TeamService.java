@@ -14,7 +14,7 @@ public interface TeamService {
 
 	TeamResponseDto createTeam(TeamRequestDto teamRequestDto, CredentialsDto credentialsDto);
 
-	List<TeamResponseDto> getAllTeams(Long companyId);
+	List<TeamResponseDto> getAllTeams(Long Id);
 
 //	TeamResponseDto getTeamById(Long teamId);
 

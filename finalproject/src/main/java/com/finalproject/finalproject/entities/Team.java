@@ -19,13 +19,13 @@ public class Team {
 
 	@Id
 	@GeneratedValue
-	private Long teamId;
+	private Long Id;
 
 	@Column(nullable = false)
 	private String name;
 
 	@Column(nullable = false)
-	private String decription;
+	private String description;
 
 	@ManyToOne
 	private Company company;
@@ -35,4 +35,5 @@ public class Team {
 
 	@OneToMany(mappedBy = "team")
 	private List<Project> projects;
+
 }

@@ -32,36 +32,37 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
     public UserResponseDto createUser(UserRequestDto userRequestDto) {
-	User newUserToBeCreated = userMapper.dtoToEntity(userRequestDto);
-	newUserToBeCreated.setCredentials(credentialsMapper.dtoToEntity(userRequestDto.getCredentials()));
-	if (availableUsername(newUserToBeCreated)) {
-		throw new BadRequestException("Username already exists");
-	}
-	Profile profile = new Profile();
-	profile.setFirstName(userRequestDto.getFirstName());
-	profile.setLastName(userRequestDto.getLastName());
-	profile.setPhone(userRequestDto.getPhone());
-	profile.setEmail(userRequestDto.getEmail());
-
-	if (userRequestDto.getCompany() != null) {
-		Optional<Company> optionalCompany = companyRepository.findById(userRequestDto.getCompany().getCompanyId());
-		if (optionalCompany.isPresent()) {
-			newUserToBeCreated.setCompany(optionalCompany.get());
-		} else {
-			throw new BadRequestException("Company does not exist");
-//			throw new BadRequestException("Company with id: " + userRequestDto.getCompany().getCompanyId() + " does not exist");
-		}
-	}
-	if (userRequestDto.getTeam() != null) {
-		Optional<Team> optionalTeam = teamRepository.findById(userRequestDto.getTeam().getTeamId());
-		if (optionalTeam.isPresent()) {
-			newUserToBeCreated.setTeam(optionalTeam.get());
-		} else {
-			throw new BadRequestException("Team does not exist");
-		}
-	}
-	newUserToBeCreated.setProfile(profile);
-	return userMapper.entityToDto(userRepository.saveAndFlush(newUserToBeCreated));
+//	User newUserToBeCreated = userMapper.dtoToEntity(userRequestDto);
+//	newUserToBeCreated.setCredentials(credentialsMapper.dtoToEntity(userRequestDto.getCredentials()));
+////	if (availableUsername(newUserToBeCreated)) {
+////		throw new BadRequestException("Username already exists");
+////	}
+//	Profile profile = new Profile();
+//	profile.setFirstName(userRequestDto.getFirstName());
+//	profile.setLastName(userRequestDto.getLastName());
+//	profile.setPhone(userRequestDto.getPhone());
+//	profile.setEmail(userRequestDto.getEmail());
+//
+//	if (userRequestDto.getCompany() != null) {
+//		Optional<Company> optionalCompany = companyRepository.findById(userRequestDto.getCompany().getId());
+//		if (optionalCompany.isPresent()) {
+//			newUserToBeCreated.setCompany(optionalCompany.get());
+//		} else {
+//			throw new BadRequestException("Company does not exist");
+////			throw new BadRequestException("Company with id: " + userRequestDto.getCompany().getCompanyId() + " does not exist");
+//		}
+//	}
+//	if (userRequestDto.getTeam() != null) {
+//		Optional<Team> optionalTeam = teamRepository.findById(userRequestDto.getTeam().getId());
+//		if (optionalTeam.isPresent()) {
+//			newUserToBeCreated.setTeam(optionalTeam.get());
+//		} else {
+//			throw new BadRequestException("Team does not exist");
+//		}
+//	}
+//	newUserToBeCreated.setProfile(profile);
+//	return userMapper.entityToDto(userRepository.saveAndFlush(newUserToBeCreated));
+		return null;
     }
 
     @Override

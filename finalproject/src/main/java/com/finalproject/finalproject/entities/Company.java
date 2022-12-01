@@ -18,7 +18,7 @@ public class Company {
 
 	@Id
 	@GeneratedValue
-	private Long companyId;
+	private Long Id;
 
 	@Column(nullable = false)
 	private String name;
