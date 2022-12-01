@@ -19,11 +19,11 @@ public class ProjectServiceImpl implements ProjectService{@Override
         return null;
     }
 
-    @Override
-    public List<ProjectResponseDto> getProjectByTeam(Long teamId) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+//    @Override
+//    public List<ProjectResponseDto> getProjectByTeam(Long teamId) {
+//        // TODO Auto-generated method stub
+//        return null;
+//    }
 
     @Override
     public ProjectResponseDto updateProject(ProjectRequestDto projectRequestDto, Long projectId,

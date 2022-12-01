@@ -14,18 +14,17 @@ import com.finalproject.finalproject.model.AnnouncementsResponseDto;
 import com.finalproject.finalproject.model.CredentialsDto;
 import com.finalproject.finalproject.services.AnnouncementsService;
 
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 
-@RequiredArgsConstructor
+@AllArgsConstructor
 @RestController
 @RequestMapping
 ("/announcements")
-
 public class AnnouncementsController {
+	
 	private final AnnouncementsService announcementsService;
 	
 	@PostMapping("/create")
-	
 	public AnnouncementsResponseDto createAnnouncement(@RequestBody AnnouncementsRequestDto announcementsRequestDto, CredentialsDto credentialsDto) {
 		return announcementsService.createAnnouncement(announcementsRequestDto, credentialsDto);
 	}
@@ -35,3 +34,4 @@ public class AnnouncementsController {
 		return announcementsService.getAllAnnouncementsByCompany(companyId);
 	}
 }
+// 

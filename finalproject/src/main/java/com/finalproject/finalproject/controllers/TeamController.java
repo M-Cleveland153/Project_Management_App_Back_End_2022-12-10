@@ -27,8 +27,8 @@ public class TeamController {
 
 	@PostMapping("/create")
 	@ResponseStatus(HttpStatus.OK)
-	public TeamResponseDto createTeam(@RequestBody TeamRequestDto teamRequestDto, CredentialsDto credentialsDto) {
-		return teamService.createTeam(teamRequestDto, credentialsDto);
+	public TeamResponseDto createTeam(@RequestBody TeamRequestDto teamRequestDto, @PathVariable Long companyId) {
+		return teamService.createTeam(teamRequestDto, companyId);
 	}
 	
 	@GetMapping

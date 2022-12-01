@@ -16,7 +16,7 @@ public class Project {
 
 	@Id
 	@GeneratedValue
-	private Long projectId;
+	private Long Id;
 
 	@Column(nullable = false)
 	private String name;
