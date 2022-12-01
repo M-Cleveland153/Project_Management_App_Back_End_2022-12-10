@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProjectResponseDto {
 
-	private Long projectId;
+	private Long id;
 
 	private String name;
 

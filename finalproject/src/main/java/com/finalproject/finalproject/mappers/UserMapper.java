@@ -13,7 +13,7 @@ import com.finalproject.finalproject.model.UserResponseDto;
 @Mapper(componentModel = "spring", uses = {CredentialsMapper.class, ProfileMapper.class})
 public interface UserMapper {
 
-	@Mapping(source = "credentials.username", target="username")
+	@Mapping(target="username", source = "credentials.username")
 	UserResponseDto entityToDto (User user);
 	
 	List<UserResponseDto> entitiesToDtos(List<User> users);

@@ -33,7 +33,7 @@ public class Team {
 	@OneToMany(mappedBy = "team")
 	private List<User> users;
 
-	// @OneToMany(mappedBy = "team")
-	// private List<Project> projects;
+	 @OneToMany(mappedBy = "team")
+	 private List<Project> projects;
 
 }

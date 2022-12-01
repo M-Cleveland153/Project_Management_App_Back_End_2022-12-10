@@ -1,15 +1,10 @@
 package com.finalproject.finalproject.model;
 
-import java.util.List;
-
-import com.finalproject.finalproject.entities.Announcements;
-import com.finalproject.finalproject.entities.Team;
-
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Data
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class CompanyResponseDto {
 
 	private Long id;

@@ -14,12 +14,11 @@ public class UserRequestDto {
 
 	private ProfileDto profile;
 
-	private Boolean active;
+	private boolean active;
 
-	private Boolean admin;
+	private boolean admin;
 
 	private String status;
 
-	private TeamRequestDto team;
 
 }

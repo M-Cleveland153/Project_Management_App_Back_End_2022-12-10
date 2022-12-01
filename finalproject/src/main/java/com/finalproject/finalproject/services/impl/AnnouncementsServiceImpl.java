@@ -32,7 +32,7 @@ public class AnnouncementsServiceImpl implements AnnouncementsService {
 	@Override
 	public AnnouncementsResponseDto createAnnouncement(AnnouncementsRequestDto announcementsRequestDto) {
 		// TODO Auto-generated method stub
-		if (announcementsRequestDto.getAnnouncementId() == null) {
+		if (announcementsRequestDto.getId() == null) {
 			throw new NotFoundException("No announcements");
 		}
 		Announcements announcementToCreate = announcementMapper.dtoToEntity(announcementsRequestDto);

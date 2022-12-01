@@ -20,7 +20,7 @@ public class Announcements {
 
 	@Id
 	@GeneratedValue
-	private Long Id;
+	private Long id;
 
 	@CreationTimestamp
 	@Column(nullable = false)

@@ -55,7 +55,9 @@ public class TeamServiceImpl implements TeamService {
 
 	@Override
 	public List<TeamResponseDto> getAllTeams(Long companyId) {
-		return teamMapper.entitiesToDtos(teamRepository.findAllByCompanyId(companyId));
+		
+		
+		return teamMapper.entitiesToDtos(teamRepository.findAllByCompanyId(companyId)); 
 	}
 
 }
