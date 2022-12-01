@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.finalproject.finalproject.model.CredentialsDto;
 import com.finalproject.finalproject.model.UserRequestDto;
 import com.finalproject.finalproject.model.UserResponseDto;
 import com.finalproject.finalproject.services.UserService;
@@ -34,8 +35,8 @@ public class UserController {
 //	}
 
 	@PostMapping("/create")
-	public UserResponseDto createUser(@RequestBody UserRequestDto userRequestDto) {
-		return userService.createUser(userRequestDto);
+	public UserResponseDto createUser(@RequestBody UserRequestDto userRequestDto, CredentialsDto credentialsDto) {
+		return userService.createUser(userRequestDto, credentialsDto);
 	}
 
 	@GetMapping
