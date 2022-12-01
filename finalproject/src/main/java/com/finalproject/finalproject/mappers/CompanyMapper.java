@@ -11,7 +11,7 @@ import com.finalproject.finalproject.model.CompanyResponseDto;
 @Mapper
 public interface CompanyMapper {
 
-    CompanyResponseDto entityToDto (Optional<Company> selectedCompany);
+    CompanyResponseDto entityToDto (Company company);
 	
 	List<CompanyResponseDto> entitiesToDtos(List<Company> companies);
 

@@ -35,9 +35,12 @@ public class CompanyServiceImpl implements CompanyService{
         if (loggedUser == null) throw new NotAuthorizedException("Incorrect login details or user does not exist.");
 
         // Get the selected company if it exists, and if the user has access to that company
-        Optional<Company> selectedCompany = companyRepository.findById(companyId);
-        if (selectedCompany == null) throw new BadRequestException("Company ID: " + companyId + " does not exist.");
-        if (!selectedCompany.get().getUsers().contains(loggedUser.get())) throw new NotAuthorizedException("You do not have access to that company.");
+        Company selectedCompany = companyRepository.findById(companyId).get();
+
+        // if (selectedCompany == null) throw new BadRequestException("Company ID: " + companyId + " does not exist.");
+        // if (!selectedCompany.get().getUsers().contains(loggedUser.get())) throw new NotAuthorizedException("You do not have access to that company.");
+
+        System.out.println(companyMapper.entityToDto(selectedCompany));
 
         return companyMapper.entityToDto(selectedCompany);
     }
