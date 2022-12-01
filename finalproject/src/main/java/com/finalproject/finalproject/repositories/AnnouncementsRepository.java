@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.finalproject.finalproject.entities.Announcements;
 
-public interface AnnouncementRepository extends JpaRepository<Announcements, Long> {
+public interface AnnouncementsRepository extends JpaRepository<Announcements, Long> {
 
 }

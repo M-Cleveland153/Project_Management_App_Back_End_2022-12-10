@@ -13,7 +13,7 @@ import com.finalproject.finalproject.exceptions.NotFoundException;
 import com.finalproject.finalproject.mappers.AnnouncementsMapper;
 import com.finalproject.finalproject.model.AnnouncementsRequestDto;
 import com.finalproject.finalproject.model.AnnouncementsResponseDto;
-import com.finalproject.finalproject.repositories.AnnouncementRepository;
+import com.finalproject.finalproject.repositories.AnnouncementsRepository;
 import com.finalproject.finalproject.repositories.CompanyRepository;
 import com.finalproject.finalproject.repositories.UserRepository;
 import com.finalproject.finalproject.services.AnnouncementsService;
@@ -24,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AnnouncementsServiceImpl implements AnnouncementsService {
 
-	private final AnnouncementRepository announcementRepository;
+	private final AnnouncementsRepository announcementRepository;
 	private final AnnouncementsMapper announcementMapper;
 	private final UserRepository userRepository;
 	private final CompanyRepository companyRepository;
