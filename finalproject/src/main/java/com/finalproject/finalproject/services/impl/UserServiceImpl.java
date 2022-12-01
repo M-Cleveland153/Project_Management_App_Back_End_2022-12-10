@@ -39,15 +39,15 @@ public class UserServiceImpl implements UserService{
 	@Override
     public UserResponseDto createUser(NewUserDto newUserDto, Long companyId) {
 	User newUserToBeCreated = userMapper.dtoToEntity(newUserDto.getUserRequestDto());
-	Optional<User> authorizingUser = userRepository.findByCredentials(credentialsMapper.dtoToEntity(newUserDto.getCredentialsDto()));
+	User authorizingUser = userRepository.findByCredentials(credentialsMapper.dtoToEntity(newUserDto.getCredentialsDto()));
 	
 	//check if authorizingUser has admin access
-	if(!authorizingUser.get().isAdmin()) {
+	if(!authorizingUser.isAdmin()) {
 		throw new NotAuthorizedException("Your are not authorized to create a new user");
 	}
 	
 	//Checking if username is available
-	if (!userRepository.findByCredentialsUsername(newUserToBeCreated.getCredentials().getUsername()).isEmpty()){
+	if (userRepository.findByCredentialsUsername(newUserToBeCreated.getCredentials().getUsername()) != null){
 		throw new BadRequestException("Username already exists");
 	}
 
@@ -79,14 +79,14 @@ public class UserServiceImpl implements UserService{
 	// }
 	// newUserToBeCreated.setProfile(newUserToBeCreated.getProfile());
 
-	Optional<Company> companyForNewUser = companyRepository.findById(companyId);
+	Company companyForNewUser = companyRepository.findById(companyId).get();
 
-	System.out.println(companyForNewUser.get().getId());
+	System.out.println(companyForNewUser.getId());
 
-	if (companyForNewUser.get().getUsers() == null) companyForNewUser.get().setUsers(new ArrayList<User>());
+	if (companyForNewUser.getUsers() == null) companyForNewUser.setUsers(new ArrayList<User>());
 
-	companyForNewUser.get().getUsers().add(newUserToBeCreated);
-	newUserToBeCreated.setCompany(companyForNewUser.get());
+	companyForNewUser.getUsers().add(newUserToBeCreated);
+	newUserToBeCreated.setCompany(companyForNewUser);
 
 	// companyRepository.saveAndFlush(companyForNewUser.get());
 	return userMapper.entityToDto(userRepository.saveAndFlush(newUserToBeCreated));
@@ -107,7 +107,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public UserResponseDto getUserByUserId(Long userId) {
-    	Optional<User> userToFind = userRepository.findById(userId);
+    	User userToFind = userRepository.findById(userId).get();
     	if (userToFind == null) {
     		throw new NotFoundException("User does not exist");
     	}

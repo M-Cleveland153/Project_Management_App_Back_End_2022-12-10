@@ -9,8 +9,8 @@ import com.finalproject.finalproject.entities.Credentials;
 import com.finalproject.finalproject.entities.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-	Optional<User> findByCredentialsUsername(String username);
+	User findByCredentialsUsername(String username);
+	User findByCredentials(Credentials dtoToEntity);
+	List<User> findAllById(Long id);
 	Optional<User> findById(Long id);
-	Optional<User> findByCredentials(Credentials dtoToEntity);
-	Optional<List<User>> findAllById(Long id);
 }

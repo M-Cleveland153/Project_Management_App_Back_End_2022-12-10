@@ -33,29 +33,29 @@ public class TeamServiceImpl implements TeamService {
 
 	public TeamResponseDto createTeam(TeamRequestDto teamRequestDto, Long companyId) {
 		Team newTeamToBeCreated = teamMapper.dtoToEntity(teamRequestDto);
-		if (newTeamToBeCreated.getName() == null || 
-			newTeamToBeCreated.getDescription() == null ||
-			newTeamToBeCreated.getCompany() == null ||
-			newTeamToBeCreated.getUsers().isEmpty())
-			throw new BadRequestException("Description, Company, Name, or User is invalid");
+		// if (newTeamToBeCreated.getName() == null || 
+		// 	newTeamToBeCreated.getDescription() == null ||
+		// 	newTeamToBeCreated.getCompany() == null ||
+		// 	newTeamToBeCreated.getUsers().isEmpty())
+		// 	throw new BadRequestException("Description, Company, Name, or User is invalid");
 		
-		Optional <Company> incomingCompany = companyRepository.findById(companyId);
+		// Company incomingCompany = companyRepository.findById(companyId).get();
 		
-		if(incomingCompany == null)
+		if(newTeamToBeCreated.getCompany() == null)
 			throw new NotFoundException("Company not found");
 		
-		for( Team team : incomingCompany.get().getTeams()) {
-			if (team.getName() == newTeamToBeCreated.getName()) {
-				throw new BadRequestException("Team name already exsists");
-			}
-		}
+		// for( Team team : incomingCompany.getTeams()) {
+		// 	if (team.getName() == newTeamToBeCreated.getName()) {
+		// 		throw new BadRequestException("Team name already exsists");
+		// 	}
+		// }
 		
 		return teamMapper.entityToDto(teamRepository.saveAndFlush(newTeamToBeCreated));
 	}
 
 	@Override
-	public List<TeamResponseDto> getAllTeams(Long Id) {
-		return teamMapper.entitiesToDtos(teamRepository.findAll().stream().collect(Collectors.toList()));
+	public List<TeamResponseDto> getAllTeams(Long companyId) {
+		return teamMapper.entitiesToDtos(teamRepository.findAllByCompanyId(companyId));
 	}
 
 }

@@ -32,7 +32,7 @@ public class Company {
 	@OneToMany(mappedBy = "company")
 	private List<Team> teams;
 
-	@OneToMany(mappedBy = "company")
-	private List<Announcements> announcements;
+	// @OneToMany(mappedBy = "company")
+	// private List<Announcements> announcements;
 
 }

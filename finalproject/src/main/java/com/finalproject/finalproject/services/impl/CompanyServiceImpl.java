@@ -31,7 +31,7 @@ public class CompanyServiceImpl implements CompanyService{
 
     public CompanyResponseDto getCompanyById(Long companyId, CredentialsDto credentialsDto) {
         // Checks credentials to see if loggedUser exists
-        Optional<User> loggedUser = userRepository.findByCredentials(credentialsMapper.dtoToEntity(credentialsDto));
+        User loggedUser = userRepository.findByCredentials(credentialsMapper.dtoToEntity(credentialsDto));
         if (loggedUser == null) throw new NotAuthorizedException("Incorrect login details or user does not exist.");
 
         // Get the selected company if it exists, and if the user has access to that company
@@ -47,15 +47,15 @@ public class CompanyServiceImpl implements CompanyService{
 
     public List<CompanyResponseDto> getAllCompanies(CredentialsDto credentialsDto) {
         // Checks credentials to see if loggedUser exists
-        Optional<User> loggedUser = userRepository.findByCredentials(credentialsMapper.dtoToEntity(credentialsDto));
+        User loggedUser = userRepository.findByCredentials(credentialsMapper.dtoToEntity(credentialsDto));
         if (loggedUser == null) throw new NotAuthorizedException("Incorrect login details or user does not exist.");
         
         // Gets all companies that the user has access to
-        Optional<List<Company>> selectedCompanies = companyRepository.findByUsers(loggedUser.get());
-        if (selectedCompanies == null || selectedCompanies.get().isEmpty()) 
+        List<Company> selectedCompanies = companyRepository.findByUsers(loggedUser);
+        if (selectedCompanies == null || selectedCompanies.isEmpty()) 
             throw new BadRequestException("You do not have access to any companies. Please contact your administrator for assistance.");
 
-        return companyMapper.entitiesToDtos(selectedCompanies.get());
+        return companyMapper.entitiesToDtos(selectedCompanies);
     }
 
 }

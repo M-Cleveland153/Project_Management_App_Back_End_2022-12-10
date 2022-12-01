@@ -41,6 +41,6 @@ public class User {
 	@ManyToOne
 	private Company company;
 
-	@OneToMany(mappedBy = "author")
-	private List<Announcements> announcements;
+	// @OneToMany(mappedBy = "author")
+	// private List<Announcements> announcements;
 }

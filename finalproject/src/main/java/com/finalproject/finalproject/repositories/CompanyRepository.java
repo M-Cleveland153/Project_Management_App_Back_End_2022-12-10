@@ -10,8 +10,8 @@ import com.finalproject.finalproject.entities.User;
 
 public interface CompanyRepository extends JpaRepository<Company, Long> {
 
-	Optional<Company> findById(Long id);
+	Optional<Company> findById(Long companyId);
 
-	Optional<List<Company>> findByUsers(User user);
+	List<Company> findByUsers(User user);
 
 }

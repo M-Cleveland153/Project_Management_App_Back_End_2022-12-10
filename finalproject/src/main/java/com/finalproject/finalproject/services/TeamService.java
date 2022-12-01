@@ -13,7 +13,7 @@ public interface TeamService {
 
 	TeamResponseDto createTeam(TeamRequestDto teamRequestDto, Long companyId);
 
-	List<TeamResponseDto> getAllTeams(Long Id);
+	List<TeamResponseDto> getAllTeams(Long companyId);
 
 //	TeamResponseDto getTeamById(Long teamId);
 

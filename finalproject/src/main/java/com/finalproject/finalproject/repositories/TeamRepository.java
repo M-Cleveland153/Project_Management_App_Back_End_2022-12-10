@@ -1,6 +1,6 @@
 package com.finalproject.finalproject.repositories;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -8,6 +8,6 @@ import com.finalproject.finalproject.entities.Team;
 
 public interface TeamRepository extends JpaRepository<Team, Long> {
 
-	Optional<Team> findById(Long id);
+	List<Team> findAllByCompanyId(Long id);
 
 }

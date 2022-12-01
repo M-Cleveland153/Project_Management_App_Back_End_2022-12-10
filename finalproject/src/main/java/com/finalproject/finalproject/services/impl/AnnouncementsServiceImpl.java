@@ -37,12 +37,12 @@ public class AnnouncementsServiceImpl implements AnnouncementsService {
 		}
 		Announcements announcementToCreate = announcementMapper.dtoToEntity(announcementsRequestDto);
 
-		Optional<User> userOptional = userRepository
+		User userOptional = userRepository
 				.findByCredentialsUsername(announcementToCreate.getAuthor().getCredentials().getUsername());
 
 		Optional<Company> companyOptional = companyRepository.findById(announcementToCreate.getCompany().getId());
 
-		announcementToCreate.setAuthor(userOptional.get());
+		announcementToCreate.setAuthor(userOptional);
 
 		announcementToCreate.setCompany(companyOptional.get());
 
