@@ -52,10 +52,10 @@ public class UserServiceImpl implements UserService{
 		throw new BadRequestException("Username already exists");
 	}
 	Profile profile = new Profile();
-	profile.setFirstName(userRequestDto.getFirstName());
-	profile.setLastName(userRequestDto.getLastName());
-	profile.setPhone(userRequestDto.getPhone());
-	profile.setEmail(userRequestDto.getEmail());
+	profile.setFirstName(userRequestDto.getProfile().getFirstName());
+	profile.setLastName(userRequestDto.getProfile().getLastName());
+	profile.setPhone(userRequestDto.getProfile().getPhone());
+	profile.setEmail(userRequestDto.getProfile().getEmail());
 
 	//Checking if company exists
 	if (userRequestDto.getCompany() != null) {
