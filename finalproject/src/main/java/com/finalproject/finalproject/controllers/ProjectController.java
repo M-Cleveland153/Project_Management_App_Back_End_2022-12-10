@@ -1,8 +1,5 @@
 package com.finalproject.finalproject.controllers;
 
-import java.util.List;
-
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,12 +7,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.finalproject.finalproject.model.CompanyRequestDto;
 import com.finalproject.finalproject.model.CredentialsDto;
 import com.finalproject.finalproject.model.ProjectRequestDto;
 import com.finalproject.finalproject.model.ProjectResponseDto;
 import com.finalproject.finalproject.services.ProjectService;
-import com.finalproject.finalproject.services.TeamService;
 
 import lombok.RequiredArgsConstructor;
 

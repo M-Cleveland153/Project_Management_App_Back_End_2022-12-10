@@ -1,7 +1,5 @@
 package com.finalproject.finalproject.services;
 
-import java.util.List;
-
 import com.finalproject.finalproject.model.CredentialsDto;
 import com.finalproject.finalproject.model.ProjectRequestDto;
 import com.finalproject.finalproject.model.ProjectResponseDto;

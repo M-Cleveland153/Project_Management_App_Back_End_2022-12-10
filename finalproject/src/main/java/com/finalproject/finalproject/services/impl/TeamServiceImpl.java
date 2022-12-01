@@ -11,7 +11,6 @@ import com.finalproject.finalproject.entities.Team;
 import com.finalproject.finalproject.exceptions.BadRequestException;
 import com.finalproject.finalproject.exceptions.NotFoundException;
 import com.finalproject.finalproject.mappers.TeamMapper;
-import com.finalproject.finalproject.model.CredentialsDto;
 import com.finalproject.finalproject.model.TeamRequestDto;
 import com.finalproject.finalproject.model.TeamResponseDto;
 import com.finalproject.finalproject.repositories.CompanyRepository;
