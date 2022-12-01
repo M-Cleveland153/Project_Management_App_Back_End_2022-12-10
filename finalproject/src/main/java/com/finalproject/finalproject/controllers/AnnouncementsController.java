@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.finalproject.finalproject.model.AnnouncementsRequestDto;
 import com.finalproject.finalproject.model.AnnouncementsResponseDto;
-import com.finalproject.finalproject.model.CredentialsDto;
 import com.finalproject.finalproject.services.AnnouncementsService;
 
 import lombok.AllArgsConstructor;
@@ -25,8 +24,8 @@ public class AnnouncementsController {
 	private final AnnouncementsService announcementsService;
 	
 	@PostMapping("/create")
-	public AnnouncementsResponseDto createAnnouncement(@RequestBody AnnouncementsRequestDto announcementsRequestDto, CredentialsDto credentialsDto) {
-		return announcementsService.createAnnouncement(announcementsRequestDto, credentialsDto);
+	public AnnouncementsResponseDto createAnnouncement(@RequestBody AnnouncementsRequestDto announcementsRequestDto) {
+		return announcementsService.createAnnouncement(announcementsRequestDto);
 	}
 
 	@GetMapping("/{companyId}")

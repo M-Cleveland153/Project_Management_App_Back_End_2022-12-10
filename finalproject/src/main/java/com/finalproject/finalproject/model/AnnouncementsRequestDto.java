@@ -2,6 +2,9 @@ package com.finalproject.finalproject.model;
 
 import java.sql.Timestamp;
 
+import com.finalproject.finalproject.entities.Company;
+import com.finalproject.finalproject.entities.User;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,8 +20,8 @@ public class AnnouncementsRequestDto {
 
 	private String message;
 
-	private Long company;
+	private Company company;
 
-	private String author;
+	private User author;
 
 }
