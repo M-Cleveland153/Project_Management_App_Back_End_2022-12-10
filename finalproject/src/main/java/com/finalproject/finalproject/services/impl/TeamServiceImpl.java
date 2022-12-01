@@ -32,7 +32,7 @@ public class TeamServiceImpl implements TeamService {
 	private final CompanyRepository companyRepository;
 //	private final ProjectRepository projectRepository;
 
-	public TeamResponseDto createTeam(TeamRequestDto teamRequestDto, CredentialsDto credentialsDto) {
+	public TeamResponseDto createTeam(TeamRequestDto teamRequestDto, Long companyId) {
 		Team newTeamToBeCreated = teamMapper.dtoToEntity(teamRequestDto);
 		if (newTeamToBeCreated.getName() == null || 
 			newTeamToBeCreated.getDescription() == null ||
@@ -40,7 +40,7 @@ public class TeamServiceImpl implements TeamService {
 			newTeamToBeCreated.getUsers().isEmpty())
 			throw new BadRequestException("Description, Company, Name, or User is invalid");
 		
-		Optional <Company> incomingCompany = companyRepository.findById(newTeamToBeCreated.getCompany().getId());
+		Optional <Company> incomingCompany = companyRepository.findById(companyId);
 		
 		if(incomingCompany == null)
 			throw new NotFoundException("Company not found");

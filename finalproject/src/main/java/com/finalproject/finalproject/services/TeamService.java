@@ -12,7 +12,7 @@ import com.finalproject.finalproject.model.TeamResponseDto;
 
 public interface TeamService {
 
-	TeamResponseDto createTeam(TeamRequestDto teamRequestDto, CredentialsDto credentialsDto);
+	TeamResponseDto createTeam(TeamRequestDto teamRequestDto, Long companyId);
 
 	List<TeamResponseDto> getAllTeams(Long Id);
 
