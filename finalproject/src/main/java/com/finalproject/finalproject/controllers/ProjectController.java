@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.finalproject.finalproject.model.CredentialsDto;
-import com.finalproject.finalproject.model.ProjectRequestDto;
+import com.finalproject.finalproject.model.NewProjectDto;
 import com.finalproject.finalproject.model.ProjectResponseDto;
 import com.finalproject.finalproject.services.ProjectService;
 
@@ -29,9 +28,8 @@ public class ProjectController {
 	}
 
 	@PostMapping("/create")
-	public ProjectResponseDto createProject(@RequestBody ProjectRequestDto projectRequestDto,
-			Long id) {
-		return projectService.createProject(projectRequestDto, id);
+	public ProjectResponseDto createProject(@RequestBody NewProjectDto newProjectDto) {
+		return projectService.createProject(newProjectDto);
 	}
 
 //@GetMapping( "/team/{teamId}")
@@ -41,13 +39,12 @@ public class ProjectController {
 
 //@GetMapping( "/company/{companyId}")
 ////public List<ProjectResponseDto> getProjectsByCompany(@PathVariable Long companyId){
-//	return projectService.getProjectsByCompany(companyId);
+//	return projectService.getProjectsByCompany(companyId);x
 //}
 
 	@PatchMapping("/{projectId}")
-	public ProjectResponseDto updateProject(@RequestBody ProjectRequestDto projectRequestDto,
-			CredentialsDto credentialsDto, @PathVariable Long projectId) {
-		return projectService.updateProject(projectRequestDto, projectId, credentialsDto);
+	public ProjectResponseDto updateProject(@RequestBody NewProjectDto newProjectDto, @PathVariable Long projectId) {
+		return projectService.updateProject(newProjectDto, projectId);
 	}
 
 }

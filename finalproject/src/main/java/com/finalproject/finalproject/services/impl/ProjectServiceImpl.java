@@ -2,18 +2,16 @@ package com.finalproject.finalproject.services.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.finalproject.finalproject.entities.Project;
-import com.finalproject.finalproject.entities.Team;
 import com.finalproject.finalproject.entities.User;
 import com.finalproject.finalproject.exceptions.BadRequestException;
 import com.finalproject.finalproject.exceptions.NotFoundException;
+import com.finalproject.finalproject.mappers.CredentialsMapper;
 import com.finalproject.finalproject.mappers.ProjectMapper;
-import com.finalproject.finalproject.model.CredentialsDto;
-import com.finalproject.finalproject.model.ProjectRequestDto;
+import com.finalproject.finalproject.model.NewProjectDto;
 import com.finalproject.finalproject.model.ProjectResponseDto;
 import com.finalproject.finalproject.repositories.ProjectRepository;
 import com.finalproject.finalproject.repositories.TeamRepository;
@@ -30,7 +28,7 @@ public class ProjectServiceImpl implements ProjectService {
 	private final ProjectRepository projectRepository;
 	private final TeamRepository teamRepository;
 	private final UserRepository userRepository;
-
+	private final CredentialsMapper credentialsMapper;
 
 	@Override
 	public List<ProjectResponseDto> getAllProjectsByTeam(Long id) {
@@ -47,38 +45,30 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public ProjectResponseDto createProject(ProjectRequestDto projectRequestDto, Long id) {
+	public ProjectResponseDto createProject(NewProjectDto newProjectDto) {
 //		Project newProject = projectMapper.dtoToEntity(projectRequestDto);
 //		if (newProject.getName() == null || newProject.getDescription() == null) {
 //			throw new BadRequestException("Projects require name and description");
 //		}
 //
 //		newProject = projectRepository.createProject(newProject);
+
 //		return newProject;
 
-		if (projectRequestDto.getTeam().getId() == null) {
-			throw new NotFoundException("No projects found");
-		}
-		Project projectToCreate = projectMapper.dtoToEntity(projectRequestDto);
-		
-		Optional<User> userCreatingProject = userRepository.findById(id);
+//		
+//		Optional<Team> teamOptional = teamRepository.findById(projectToCreate.getTeam().getId());
+//
+//		projectToCreate.setTeam(teamOptional.get());
+//
+//		return projectMapper.entityToDto(projectToCreate);
 
-		if (userCreatingProject.get().isAdmin() != true) {
-			throw new BadRequestException("Not authorized to create a project");
-		}
-
-		Optional<Team> teamOptional = teamRepository.findById(projectToCreate.getTeam().getId());
-
-		projectToCreate.setTeam(teamOptional.get());
-
-		return projectMapper.entityToDto(projectToCreate);
+		return null;
 
 	}
 
 	@Override
-	public ProjectResponseDto updateProject(ProjectRequestDto projectRequestDto, Long projectId,
-			CredentialsDto credentialsDto) {
-//
+	public ProjectResponseDto updateProject(NewProjectDto newProjectDto, Long id) {
+
 //		Project projectUpdate = projectRepository.findById(projectId);
 //
 //		projectUpdate.setName(projectRequestDto.getName());
@@ -86,7 +76,28 @@ public class ProjectServiceImpl implements ProjectService {
 //		projectUpdate.setDescription(projectRequestDto.getDescription());
 //
 //		return projectMapper.entityToDto(projectRepository.saveAndFlush(projectUpdate));
-		return null;
+
+		User authorizingUser = userRepository
+				.findByCredentials(credentialsMapper.dtoToEntity(newProjectDto.getCredentialsDto()));
+
+		Project projectFromRepo = projectRepository.findById(id).get();
+
+		Project projectToUpdate = projectMapper.dtoToEntity(newProjectDto.getProjectRequestDto());
+
+		if (newProjectDto.getProjectRequestDto().getTeam().getId() == null) {
+			throw new NotFoundException("No projects found");
+		}
+
+		if (authorizingUser.isAdmin() != true) {
+			throw new BadRequestException("Not authorized to create a project");
+		}
+
+		projectFromRepo.setName(projectToUpdate.getName());
+		projectFromRepo.setTeam(projectToUpdate.getTeam());
+		projectFromRepo.setDescription(projectToUpdate.getDescription());
+		projectFromRepo.setActive(projectToUpdate.isActive());
+
+		return projectMapper.entityToDto(projectRepository.saveAndFlush(projectFromRepo));
 
 	}
 

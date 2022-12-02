@@ -1,6 +1,6 @@
 package com.finalproject.finalproject.repositories;
 
-import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -12,5 +12,7 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 //	Project createProject(Project newProject);
 //
 //	List<Project> findAll(Long companyId);
+	
+	Optional<Project> findById(Long id);
 
 }

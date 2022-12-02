@@ -2,21 +2,18 @@ package com.finalproject.finalproject.services;
 
 import java.util.List;
 
-import com.finalproject.finalproject.model.CredentialsDto;
-import com.finalproject.finalproject.model.ProjectRequestDto;
+import com.finalproject.finalproject.model.NewProjectDto;
 import com.finalproject.finalproject.model.ProjectResponseDto;
-
 
 public interface ProjectService {
 
 //	ProjectResponseDto createProject(ProjectRequestDto projectRequestDto, CredentialsDto credentialsDto);
 
-	ProjectResponseDto updateProject(ProjectRequestDto projectRequestDto, Long projectId,
-			CredentialsDto credentialsDto);
+	ProjectResponseDto updateProject(NewProjectDto newProjectDto, Long id);
 
 	List<ProjectResponseDto> getAllProjectsByTeam(Long id);
 
-	ProjectResponseDto createProject(ProjectRequestDto projectRequestDto, Long id);
+	ProjectResponseDto createProject(NewProjectDto newProjectDto);
 
 //	ProjectResponseDto createProject(ProjectRequestDto projectRequestDto, CredentialsDto credentialsDto);
 
@@ -28,6 +25,5 @@ public interface ProjectService {
 //			CredentialsDto credentialsDto);
 //
 //	List<ProjectResponseDto> getAllProjects();
-
 
 }

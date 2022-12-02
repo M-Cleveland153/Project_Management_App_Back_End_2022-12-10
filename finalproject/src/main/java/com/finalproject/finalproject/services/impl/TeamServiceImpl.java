@@ -1,14 +1,10 @@
 package com.finalproject.finalproject.services.impl;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.finalproject.finalproject.entities.Company;
 import com.finalproject.finalproject.entities.Team;
-import com.finalproject.finalproject.exceptions.BadRequestException;
 import com.finalproject.finalproject.exceptions.NotFoundException;
 import com.finalproject.finalproject.mappers.TeamMapper;
 import com.finalproject.finalproject.model.TeamRequestDto;
