@@ -10,8 +10,8 @@ public class UserResponseDto {
 	private Long id;
 
 	private String username;
-//	
-	private ProfileDto profile;
+
+//	private ProfileDto profile;
 
 	private boolean active;
 
@@ -19,7 +19,7 @@ public class UserResponseDto {
 
 	private String status;
 
-	private TeamResponseDto team;
+//	private TeamResponseDto team;
 
 	private CompanyResponseDto company;
 

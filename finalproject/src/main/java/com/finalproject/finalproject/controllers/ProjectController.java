@@ -1,5 +1,8 @@
 package com.finalproject.finalproject.controllers;
 
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,27 +21,33 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RequestMapping("/project")
 public class ProjectController {
-private final ProjectService projectService;
+	private final ProjectService projectService;
 
-@PostMapping("/create")
-public ProjectResponseDto createProject(@RequestBody ProjectRequestDto projectRequestDto, CredentialsDto credentialsDto) {
-	return projectService.createProject(projectRequestDto, credentialsDto);
-}
+	@GetMapping("/{teamId}")
+	public List<ProjectResponseDto> getAllProjectsByTeam(@PathVariable Long teamId) {
+		return projectService.getAllProjectsByTeam(teamId);
+	}
+
+	@PostMapping("/create")
+	public ProjectResponseDto createProject(@RequestBody ProjectRequestDto projectRequestDto,
+			Long id) {
+		return projectService.createProject(projectRequestDto, id);
+	}
 
 //@GetMapping( "/team/{teamId}")
 //public List<ProjectResponseDto> getProjectsByTeam(@PathVariable Long teamId){
 //	return projectService.getProjectByTeam(teamId);
 //}
 
-
 //@GetMapping( "/company/{companyId}")
 ////public List<ProjectResponseDto> getProjectsByCompany(@PathVariable Long companyId){
 //	return projectService.getProjectsByCompany(companyId);
 //}
 
-@PatchMapping("/{projectId}")
-public ProjectResponseDto updateProject(@RequestBody ProjectRequestDto projectRequestDto, CredentialsDto credentialsDto , @PathVariable Long projectId ) {
-	return projectService.updateProject(projectRequestDto, projectId, credentialsDto);
-}
+	@PatchMapping("/{projectId}")
+	public ProjectResponseDto updateProject(@RequestBody ProjectRequestDto projectRequestDto,
+			CredentialsDto credentialsDto, @PathVariable Long projectId) {
+		return projectService.updateProject(projectRequestDto, projectId, credentialsDto);
+	}
 
 }
