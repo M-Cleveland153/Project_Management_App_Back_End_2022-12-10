@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.finalproject.finalproject.entities.Project;
 import com.finalproject.finalproject.entities.User;
 import com.finalproject.finalproject.exceptions.BadRequestException;
+import com.finalproject.finalproject.exceptions.NotAuthorizedException;
 import com.finalproject.finalproject.exceptions.NotFoundException;
 import com.finalproject.finalproject.mappers.CredentialsMapper;
 import com.finalproject.finalproject.mappers.ProjectMapper;
@@ -46,24 +47,34 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Override
 	public ProjectResponseDto createProject(NewProjectDto newProjectDto) {
+
+		User authorizingUser = userRepository
+				.findByCredentials(credentialsMapper.dtoToEntity(newProjectDto.getCredentialsDto()));
+		Project newProject = projectMapper.dtoToEntity(newProjectDto.getProjectRequestDto());
+
 //		Project newProject = projectMapper.dtoToEntity(projectRequestDto);
 //		if (newProject.getName() == null || newProject.getDescription() == null) {
 //			throw new BadRequestException("Projects require name and description");
 //		}
 //
 //		newProject = projectRepository.createProject(newProject);
-
 //		return newProject;
 
-//		
-//		Optional<Team> teamOptional = teamRepository.findById(projectToCreate.getTeam().getId());
-//
-//		projectToCreate.setTeam(teamOptional.get());
-//
-//		return projectMapper.entityToDto(projectToCreate);
+		// if (projectRequestDto.getTeam().getId() == null) {
+		// throw new NotFoundException("No projects found");
+		// }
 
-		return null;
+		if (authorizingUser == null)
+			throw new BadRequestException("Bad request, incorrect user details.");
+		if (authorizingUser.isAdmin() == false)
+			throw new NotAuthorizedException("Not authorized to create a project");
 
+		// Team teamOptional =
+		// teamRepository.findById(projectToCreate.getTeam().getId()).get();
+
+		// projectToCreate.setTeam(teamOptional);
+
+		return projectMapper.entityToDto(projectRepository.saveAndFlush(newProject));
 	}
 
 	@Override
